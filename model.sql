@@ -76,7 +76,7 @@ CREATE TABLE workers (
 ALTER TABLE purchases ADD CONSTRAINT purchases_objects FOREIGN KEY purchases_objects (object_id)
     REFERENCES objects (id);
 -- Reference:  objects_clients (table: objects)
-ALTER TABLE purchasess ADD CONSTRAINT purchases_materials FOREIGN KEY purchases_materials (material_id)
+ALTER TABLE purchases ADD CONSTRAINT purchases_materials FOREIGN KEY purchases_materials (material_id)
     REFERENCES materials (id);
 
 ALTER TABLE objects ADD CONSTRAINT objects_clients FOREIGN KEY objects_clients (client_id)
