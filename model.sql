@@ -105,7 +105,7 @@ ALTER TABLE salary ADD CONSTRAINT salary_objects FOREIGN KEY salary_objects (obj
 
 
 ALTER TABLE salary ADD CONSTRAINT salary_workers FOREIGN KEY salary_workers (worker_id)
-    REFERENCES workers (name);
+    REFERENCES workers (id);
 
 
 
