@@ -206,6 +206,63 @@ LOCK TABLES `workers` WRITE;
 INSERT INTO `workers` VALUES (1,'Kay'),(2,'Unity'),(3,'Alyssa'),(4,'Jillian'),(5,'Veronica'),(6,'Martina'),(7,'Gay'),(8,'Liberty'),(9,'Hedwig'),(10,'Hadley'),(11,'Willow'),(12,'Imani'),(13,'Sydney'),(14,'Azalia'),(15,'Anne'),(16,'Ashely'),(17,'Yvette'),(18,'Kiona'),(19,'Carolyn'),(20,'Ima'),(21,'Irma'),(22,'Cheryl'),(23,'Hedy'),(24,'Sydney'),(25,'Emi'),(26,'Lenore'),(27,'Nell'),(28,'Kim'),(29,'Maryam'),(30,'Noel'),(31,'Lavinia'),(32,'Melissa'),(33,'Amaya'),(34,'Penelope'),(35,'Nita'),(36,'Libby'),(37,'Gloria'),(38,'Hillary'),(39,'Ruby'),(40,'Kelsey'),(41,'Darrel'),(42,'Isabelle'),(43,'Cally'),(44,'Quintessa'),(45,'Amela'),(46,'Beatrice'),(47,'Alice'),(48,'Bell'),(49,'Vanna'),(50,'Kaden'),(51,'Raya'),(52,'Savannah'),(53,'Barbara'),(54,'Chiquita'),(55,'Naomi'),(56,'Alana'),(57,'Mari'),(58,'Evelyn'),(59,'Indigo'),(60,'Kelsey'),(61,'Meghan'),(62,'Scarlett'),(63,'Desiree'),(64,'Gisela'),(65,'Angelica'),(66,'Sharon'),(67,'Pascale'),(68,'Kai'),(69,'Hollee'),(70,'Cassidy'),(71,'Emily'),(72,'Shafira'),(73,'Macy'),(74,'Kaye'),(75,'Patience'),(76,'Leila'),(77,'Deborah'),(78,'Ivana'),(79,'Lillian'),(80,'Yvette'),(81,'Colette'),(82,'Olympia'),(83,'Ashely'),(84,'Quyn'),(85,'Cassidy'),(86,'Belle'),(87,'Jaden'),(88,'Rae'),(89,'Signe'),(90,'Renee'),(91,'Eden'),(92,'Quynn'),(93,'Sopoline'),(94,'Amber'),(95,'Cathleen'),(96,'Aphrodite'),(97,'Ramona'),(98,'Kirsten'),(99,'Amy'),(100,'Shea');
 /*!40000 ALTER TABLE `workers` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'pbdsis'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `balance` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `balance`(IN company_name VARCHAR(50))
+BEGIN SELECT  name, price - spending AS balance FROM objects WHERE name = company_name; END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `finished_balance` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `finished_balance`()
+BEGIN SELECT name, price - spending AS balance from objects where finished=1; END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `top_foreman` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `top_foreman`()
+BEGIN
+SELECT DISTINCT workers.name, professions.name AS profession, objects.name AS object, objects.price - objects.spending AS balance FROM objects JOIN salary JOIN workers JOIN professions ON salary.prof_id = professions.id AND salary.object_id = objects.id AND salary.worker_id = workers.id  WHERE professions.name = 'Foreman' ORDER BY balance DESC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -216,4 +273,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-28 22:12:47
+-- Dump completed on 2015-09-28 22:23:34
