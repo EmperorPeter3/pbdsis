@@ -77,6 +77,7 @@ CREATE TABLE `objects` (
   `price` decimal(12,2) NOT NULL,
   `client_id` int(11) NOT NULL,
   `spending` decimal(12,2) NOT NULL,
+  `finished` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `objects_clients` (`client_id`),
   CONSTRAINT `objects_clients` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`)
@@ -89,7 +90,7 @@ CREATE TABLE `objects` (
 
 LOCK TABLES `objects` WRITE;
 /*!40000 ALTER TABLE `objects` DISABLE KEYS */;
-INSERT INTO `objects` VALUES (1,'In Felis Ltd',102215.19,80,88312.26),(2,'Quisque Imperdiet Incorporated',102562.41,77,75371.23),(3,'Eget Associates',105276.40,76,91818.05),(4,'Elit Pede Malesuada Associates',96525.54,78,85922.13),(5,'Elit Industries',102566.95,63,77813.63),(6,'Senectus Foundation',102465.48,65,79417.35),(7,'Felis LLC',99185.19,74,71089.02),(8,'Faucibus Id Libero Associates',100419.83,65,76331.68),(9,'Nam Interdum Enim Corporation',94719.15,78,75618.57),(10,'Nonummy Ultricies Ornare Ltd',99999.48,72,69750.33),(11,'Dolor Elit Limited',101573.90,77,80808.51),(12,'Magna Consulting',106737.74,72,98711.64),(13,'Lobortis Tellus Justo Corp.',96939.35,67,68631.43),(14,'Et Netus Et LLC',98622.66,65,75671.69),(15,'Faucibus Morbi Vehicula Foundation',98104.85,69,72210.61),(16,'Ridiculus Limited',98723.03,65,79353.69),(17,'Sagittis Nullam Vitae LLP',99399.54,70,77782.22),(18,'Ultrices Vivamus Limited',101531.43,61,76539.92),(19,'Non Bibendum Sed Consulting',100723.82,70,82126.06),(20,'Donec Porttitor Incorporated',101049.04,80,85832.27),(21,'Arcu Vestibulum Corporation',100223.16,62,79596.70),(22,'Facilisis Facilisis Magna Corporation',99979.86,75,77947.88),(23,'Suspendisse LLP',99906.25,62,85886.46),(24,'Ut Corp.',97369.00,69,80365.50),(25,'Netus Et Company',105001.76,63,78836.13),(26,'Sed Libero Proin Inc.',100734.51,70,76120.65),(27,'Lacus Varius Industries',101562.89,76,90730.71),(28,'Nunc Id LLP',106149.97,62,78339.71),(29,'Elit Sed Consequat Corporation',98907.70,63,82569.39),(30,'Ante Vivamus Non Associates',95696.06,69,84061.41);
+INSERT INTO `objects` VALUES (1,'In Felis Ltd',102215.19,80,88312.26,1),(2,'Quisque Imperdiet Incorporated',102562.41,77,75371.23,1),(3,'Eget Associates',105276.40,76,91818.05,0),(4,'Elit Pede Malesuada Associates',96525.54,78,85922.13,1),(5,'Elit Industries',102566.95,63,77813.63,1),(6,'Senectus Foundation',102465.48,65,79417.35,1),(7,'Felis LLC',99185.19,74,71089.02,1),(8,'Faucibus Id Libero Associates',100419.83,65,76331.68,1),(9,'Nam Interdum Enim Corporation',94719.15,78,75618.57,1),(10,'Nonummy Ultricies Ornare Ltd',99999.48,72,69750.33,1),(11,'Dolor Elit Limited',101573.90,77,80808.51,1),(12,'Magna Consulting',106737.74,72,98711.64,1),(13,'Lobortis Tellus Justo Corp.',96939.35,67,68631.43,1),(14,'Et Netus Et LLC',98622.66,65,75671.69,0),(15,'Faucibus Morbi Vehicula Foundation',98104.85,69,72210.61,1),(16,'Ridiculus Limited',98723.03,65,79353.69,0),(17,'Sagittis Nullam Vitae LLP',99399.54,70,77782.22,1),(18,'Ultrices Vivamus Limited',101531.43,61,76539.92,1),(19,'Non Bibendum Sed Consulting',100723.82,70,82126.06,0),(20,'Donec Porttitor Incorporated',101049.04,80,85832.27,1),(21,'Arcu Vestibulum Corporation',100223.16,62,79596.70,1),(22,'Facilisis Facilisis Magna Corporation',99979.86,75,77947.88,1),(23,'Suspendisse LLP',99906.25,62,85886.46,0),(24,'Ut Corp.',97369.00,69,80365.50,0),(25,'Netus Et Company',105001.76,63,78836.13,1),(26,'Sed Libero Proin Inc.',100734.51,70,76120.65,0),(27,'Lacus Varius Industries',101562.89,76,90730.71,0),(28,'Nunc Id LLP',106149.97,62,78339.71,1),(29,'Elit Sed Consequat Corporation',98907.70,63,82569.39,1),(30,'Ante Vivamus Non Associates',95696.06,69,84061.41,0);
 /*!40000 ALTER TABLE `objects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-28 20:25:52
+-- Dump completed on 2015-09-28 22:12:47
