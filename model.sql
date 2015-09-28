@@ -1,7 +1,7 @@
 -- tables
 -- Table clients
 CREATE TABLE clients (
-    id int  NOT NULL ,
+    id int  NOT NULL AUTO_INCREMENT ,
     name int  NOT NULL ,
     contact int  NOT NULL ,
     CONSTRAINT clients_pk PRIMARY KEY (id)
@@ -9,17 +9,21 @@ CREATE TABLE clients (
 
 -- Table materials
 CREATE TABLE materials (
-    id int  NOT NULL ,
+    id int  NOT NULL AUTO_INCREMENT,
     name int  NOT NULL ,
-    object_id int  NOT NULL ,
-    cost int  NOT NULL ,
-    count int  NOT NULL ,
     CONSTRAINT materials_pk PRIMARY KEY (id)
 );
 
+CREATE TABLE purchases (
+    id int NOT NULL AUTO_INCREMENT,
+    cost int NOT NULL,
+    count int NOT NULL,
+    object_id int NOT NULL,
+    material_id int NOT NULL,
+    CONSTRAINT purchases_pk PRIMARY KEY (id)
 -- Table objects
 CREATE TABLE objects (
-    id int  NOT NULL ,
+    id int  NOT NULL AUTO_INCREMENT,
     name varchar(50)  NOT NULL ,
     price decimal(12,2)  NOT NULL ,
     client_id int  NOT NULL ,
@@ -29,7 +33,7 @@ CREATE TABLE objects (
 
 -- Table objects_relationships
 CREATE TABLE objects_relationships (
-    id int  NOT NULL ,
+    id int  NOT NULL AUTO_INCREMENT,
     worker_id int  NOT NULL ,
     prof_id int  NOT NULL ,
     object_id int  NOT NULL ,
@@ -38,14 +42,14 @@ CREATE TABLE objects_relationships (
 
 -- Table professions
 CREATE TABLE professions (
-    id int  NOT NULL ,
+    id int  NOT NULL AUTO_INCREMENT,
     name varchar(35)  NOT NULL ,
     CONSTRAINT professions_pk PRIMARY KEY (id)
 );
 
 -- Table salary
 CREATE TABLE salary (
-    id int  NOT NULL ,
+    id int  NOT NULL AUTO_INCREMENT,
     object_id int  NOT NULL ,
     worker_id int  NOT NULL ,
     type bool  NOT NULL ,
@@ -55,7 +59,7 @@ CREATE TABLE salary (
 
 -- Table workers
 CREATE TABLE workers (
-    id int  NOT NULL ,
+    id int  NOT NULL AUTO_INCREMENT,
     name varchar(100)  NOT NULL ,
     CONSTRAINT workers_pk PRIMARY KEY (id)
 );
@@ -68,10 +72,11 @@ CREATE TABLE workers (
 -- Reference:  materials_objects (table: materials)
 
 
-ALTER TABLE materials ADD CONSTRAINT materials_objects FOREIGN KEY materials_objects (object_id)
+ALTER TABLE purchasess ADD CONSTRAINT purchases_objects FOREIGN KEY purchases_objects (object_id)
     REFERENCES objects (id);
 -- Reference:  objects_clients (table: objects)
-
+ALTER TABLE purchasess ADD CONSTRAINT purchases_materials FOREIGN KEY purchases_materials (material_id)
+    REFERENCES materials (id);
 
 ALTER TABLE objects ADD CONSTRAINT objects_clients FOREIGN KEY objects_clients (client_id)
     REFERENCES clients (id);
@@ -104,4 +109,3 @@ ALTER TABLE salary ADD CONSTRAINT salary_workers FOREIGN KEY salary_workers (wor
 
 
 -- End of file.
-
