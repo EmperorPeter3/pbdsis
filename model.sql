@@ -21,6 +21,7 @@ CREATE TABLE purchases (
     object_id int NOT NULL,
     material_id int NOT NULL,
     CONSTRAINT purchases_pk PRIMARY KEY (id)
+    );
 -- Table objects
 CREATE TABLE objects (
     id int  NOT NULL AUTO_INCREMENT,
@@ -72,7 +73,7 @@ CREATE TABLE workers (
 -- Reference:  materials_objects (table: materials)
 
 
-ALTER TABLE purchasess ADD CONSTRAINT purchases_objects FOREIGN KEY purchases_objects (object_id)
+ALTER TABLE purchases ADD CONSTRAINT purchases_objects FOREIGN KEY purchases_objects (object_id)
     REFERENCES objects (id);
 -- Reference:  objects_clients (table: objects)
 ALTER TABLE purchasess ADD CONSTRAINT purchases_materials FOREIGN KEY purchases_materials (material_id)
