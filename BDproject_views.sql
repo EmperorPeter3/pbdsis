@@ -8,7 +8,7 @@ CREATE VIEW `balance_for_2014` AS select sum((`objects`.`price` - `objects`.`spe
 
 DROP TABLE IF EXISTS `balance_for_2015`;
 DROP VIEW IF EXISTS `balance_for_2015`;
-CREATE VIEW `balance_for_2015` AS select sum((`objects`.`price` - `objects`.`spending`)) AS `total` from `objects` where (`objects`.`finished`=1) and YEAR(`objects`.`end`)=2015;
+CREATE VIEW `balance_for_2015` AS select (0 + sum((`objects`.`price` - `objects`.`spending`))) AS `total` from `objects` where (`objects`.`finished`=1) and YEAR(`objects`.`end`)=2015;
 
 DROP TABLE IF EXISTS `balance_for_2016`;
 DROP VIEW IF EXISTS `balance_for_2016`;

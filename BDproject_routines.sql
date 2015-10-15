@@ -19,7 +19,7 @@ WHILE (i<total) DO
 SET temp="";
 SELECT TABLE_NAME INTO temp FROM information_schema.views limit i,1;
 SET i=i+1;
-SET @Query=CONCAT("select count(*) as ",temp," from ", temp);
+SET @Query=CONCAT("select if((select count(*) from ", temp,")>0 and (select count(*) from ", temp,")!=NULL,'true','false') as ",temp);
 PREPARE Query FROM @Query;
 EXECUTE Query;
 DEALLOCATE PREPARE Query;
