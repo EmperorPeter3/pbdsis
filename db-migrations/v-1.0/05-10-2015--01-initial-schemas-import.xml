@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <!-- create table 'clients' -->
+  <changeSet id="1" author="max">
+    <createTable tableName="clients"> 
+      <column autoIncrement="true" name="id" type="INT(11)"> 
+        <constraints nullable="false" primaryKey="true"/>
+      </column> 
+      <column name="name" type="VARCHAR(200)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="contact" type="VARCHAR(100)"> 
+        <constraints nullable="false"/>
+      </column> 
+    </createTable>
+  </changeSet>
+	<!-- create table 'materials' -->
+  <changeSet id="2" author="max">
+    <createTable tableName="materials"> 
+      <column autoIncrement="true" name="id" type="INT(11)"> 
+        <constraints nullable="false" primaryKey="true"/>
+      </column> 
+      <column name="name" type="VARCHAR(40)"> 
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+	<!-- create table 'objects' -->
+  <changeSet id="3" author="max">
+    <createTable tableName="objects"> 
+      <column autoIncrement="true" name="id" type="INT(11)"> 
+        <constraints nullable="false" primaryKey="true"/>
+      </column> 
+      <column name="name" type="VARCHAR(50)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="price" type="DECIMAL(12,2)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="client_id" type="INT(11)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="spending" type="DECIMAL(12,2)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="finished" type="TINYINT(1)"> 
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <!-- create table 'professions' -->
+  <changeSet id="4" author="max">
+    <createTable tableName="professions"> 
+      <column autoIncrement="true" name="id" type="INT(11)"> 
+        <constraints nullable="false" primaryKey="true"/>
+      </column> 
+      <column name="name" type="VARCHAR(35)"> 
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <!-- create table 'purchases' -->
+  <changeSet id="5" author="max">
+    <createTable tableName="purchases"> 
+      <column autoIncrement="true" name="id" type="INT(11)"> 
+        <constraints nullable="false" primaryKey="true"/>
+      </column> 
+      <column name="cost" type="DECIMAL(12,2)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="count" type="DECIMAL(7,3)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="object_id" type="INT(11)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="material_id" type="INT(11)"> 
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <!-- create table 'salary' -->
+  <changeSet id="6" author="max">
+    <createTable tableName="salary"> 
+      <column autoIncrement="true" name="id" type="INT(11)"> 
+        <constraints nullable="false" primaryKey="true"/>
+      </column> 
+      <column name="object_id" type="INT(11)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="worker_id" type="INT(11)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="type" type="TINYINT(1)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="salary" type="DECIMAL(8,2)"> 
+        <constraints nullable="false"/>
+      </column>
+      <column name="prof_id" type="INT(11)"> 
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+   <!-- create table 'workers' -->
+  <changeSet id="7" author="max">
+    <createTable tableName="workers"> 
+      <column autoIncrement="true" name="id" type="INT(11)"> 
+        <constraints nullable="false" primaryKey="true"/>
+      </column> 
+      <column name="name" type="VARCHAR(100)"> 
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>
